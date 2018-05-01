@@ -48,6 +48,10 @@ set numberwidth=5               " and align them nicely
 map k gk
 map j gj
 
+" move up and down windows by holding down control and j/k
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+
 " Restore cursor position when re-opening a file
 function! ResCur()
   if line("'\"") <= line("$")
@@ -61,6 +65,14 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
+" Gist config
+let g:gist_browser_command = 'open /Applications/Google\ Chrome.app %URL%'
+let g:gist_show_privates = 1     " show private gists when listing
+let g:gist_post_private = 1      " create private gists by default
+let g:gist_detect_filetype = 1
+let g:github_user =  $GITHUB_USER
+let g:github_token = $GITHUB_TOKEN
+
 " copy all text in the file
 map <leader>ca :%y+<CR>
 " close the current buffer
@@ -72,7 +84,7 @@ map <leader>tf :CommandTFlush<CR>
 " reload vimrc
 nnoremap <leader>sv :source $MYVIMRC<CR>
 " open current file in defult app
-map <leader>o :!open %
+map <leader>o :!open "%"
 " turn off list for prose
 map <leader>prose :set nolist<CR>:set spell
 
